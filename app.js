@@ -28,11 +28,8 @@ app.use(views(__dirname + '/views', {
 }))
 
 app.use(cors({
-  origin: function(ctx) {
-    if (ctx.url === '/test') {
-      return false;
-    }
-    return 'http://127.0.0.1:1998';
+  origin: function(ctx) {   
+    return "*";
   },
   exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
   maxAge: 5,

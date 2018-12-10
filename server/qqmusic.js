@@ -11,10 +11,11 @@ const headers2 = {
 }
 const POST = 'post'
 const ajax = {
+  // 首页
   home() {
     return axios.fetch({ url: config.QQHOME_URL, params: config.default_params })
   },
-  // 获取单曲信息
+  // 获取歌曲列表
   songInfo(param) {
     const params = {
       ...config.default_params,
@@ -36,51 +37,41 @@ const ajax = {
       headers
     })
   },
-  songList(songmid) {
-    const params = {
-      _: new Date().getTime()
-    }
+  // 热门歌单列表，音乐地址
+  songSrc(songmid) {
+    const params = {  _: new Date().getTime() }
     const data = {
-      req_0: {
-        module: "vkey.GetVkeyServer",
-        method: "CgiGetVkey",
-        param: {
-          guid: 5800615146,
-          songmid,
-          songtype: [],
-          uin: "0",
-          loginflag:0,
-          platform:23,
-          h5to: 'speed'
+      req_0:{
+        ...config.default_req_0,
+        param:{
+          ...config.default_req_0_param,
+          songmid
         }
       },
-      comm: {
-        g_tk:5381,
-        uin:0,
-        format:"json",
-        ct:23,
-        cv:0
-      }
+        comm: config.default_comm
     }
+
+    console.log(JSON.stringify(data))
+
+    // {"req_0":{"module":"vkey.GetVkeyServer","method":"CgiGetVkey","param":
+    // {"guid":"4980529125","songtype":[],"uin":"0","loginflag":0,"platform":"23","h5to":"speed",
+    // "songmid":["0048ukdm41wbsh","000Wpb4P33yS4C","001PeJps37WoGW","000ie6ID1jEHYg","001AxwcN2CZiZH","004WZ2yI2QlxWx","0024BipY1FIfR4","000tGVpV2EWnXW","0015dnr83U9uYe","002d2PFN4gCBVL","0009E15m3hamQd","003d5e8a2YFv7P","002F9yNf3axTav","000O5gNc1ytE3G","000TzJeb3iTla3"]}},
+    // "comm":{"g_tk":5381,"uin":0,"format":"json","ct":23,"cv":0}}
+
+    // {"req_0":{"module":"vkey.GetVkeyServer","method":"CgiGetVkey","param":
+    // {"guid":"4980529125","songtype":[],"uin":"0","loginflag":0,"platform":"23","h5to":"speed",
+    // "songmid":["0048ukdm41wbsh","000Wpb4P33yS4C","001PeJps37WoGW","000ie6ID1jEHYg","001AxwcN2CZiZH","004WZ2yI2QlxWx","0024BipY1FIfR4","000tGVpV2EWnXW","0015dnr83U9uYe","002d2PFN4gCBVL","0009E15m3hamQd","003d5e8a2YFv7P","002F9yNf3axTav","000O5gNc1ytE3G","000TzJeb3iTla3"]}},
+    // "comm":{"g_tk":5381,"uin":0,"format":"json","ct":23,"cv":0}}
     return axios.fetch({
-      url: config.QQSONG_List,
-      params,
+      url: 'https://u.y.qq.com/cgi-bin/musicu.fcg',
       headers: {
-        ...headers,
-        'Content-Type': 'application/x-www-form-urlencoded'
+        ...headers2,
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json'
       },
-      data,
-      method: POST
-    })
-  },
-  // 获取key
-  songVkey(songmid = '0010hBPF4TtDbz', filename = 'C1000010hBPF4TtDbz.m4a') {
-    return new Promise((resolve, reject) => {
-      JSONP(`https://c.y.qq.com/base/fcgi-bin/fcg_music_express_mobile3.fcg?g_tk=678733985&jsonpCallback=MusicJsonCallback8015407264426806&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0&cid=205361747&callback=MusicJsonCallback8015407264426806&songmid=${songmid}&filename=${filename}&guid=1674273789`,
-        function (json) {
-          console.log(json)
-          resolve(json)
-      })
+      method: POST,
+      params,
+      data
     })
   },
   // 获取歌词
@@ -102,21 +93,8 @@ const ajax = {
       }
     })
   },
-  songSrc() {
-    // const data = '{"req_0":{"module":"track_info.UniformRuleCtrlServer","method":"GetTrackInfo","param":{"ids":[4962990,1889266,8292,476205,1672450,1248135,4029059,102654611,106291312,1032932,105838893,103048995,200363210,1293976,158265],"types":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}},"comm":{"g_tk":5381,"uin":0,"format":"json","ct":23,"cv":0}}'
-    // console.log(data)
-    return axios.fetch({
-      url: 'https://u.y.qq.com/cgi-bin/musicu.fcg?_=1541662551668',
-      headers: {
-        ...headers,
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': 'application/json'
-      },
-      method: POST
-    })
-  },
   // 获取电台
-  radioList() {
+  radioInfo() {
     const data = {"comm":{"g_tk":5381,"uin":0,"format":"json","inCharset":"utf-8","outCharset":"utf-8","notice":0,"platform":"h5","needNewCode":1},"detail":{"module":"music.pf_song_detail_svr","method":"get_song_detail","param":{"song_id":214193203}},"simsongs":{"module":"rcmusic.similarSongRadioServer","method":"get_simsongs","param":{"songid":214193203}},"gedan":{"module":"music.mb_gedan_recommend_svr","method":"get_related_gedan","param":{"sin":0,"last_id":0,"song_type":1,"song_id":214193203}},"video":{"module":"MvService.MvInfoProServer","method":"GetSongRelatedMv","param":{"songid":"214193203","songtype":1,"lastmvid":0,"num":5}}}
     return axios.fetch({
       url: 'https://u.y.qq.com/cgi-bin/musicu.fcg?_=1544079236484',
