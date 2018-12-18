@@ -1,5 +1,6 @@
 const config = {
   // qqmusic
+
   QQMusic: {
     default_params: {
       g_tk: 5381,

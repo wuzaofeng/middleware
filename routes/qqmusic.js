@@ -47,6 +47,17 @@ router.get('/lyric',async (ctx,next)=>{
   }
 })
 
+// 获取电台歌单
+router.get('/radio', async(ctx, next) => {
+  try {
+    const res = await ajax.radio()
+    console.log(res)
+    ctx.body = res
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 // 获取电台信息
 router.get('/radio_info', async (ctx,next)=>{
   try {

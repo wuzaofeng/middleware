@@ -50,18 +50,6 @@ const ajax = {
       },
         comm: config.default_comm
     }
-
-    console.log(JSON.stringify(data))
-
-    // {"req_0":{"module":"vkey.GetVkeyServer","method":"CgiGetVkey","param":
-    // {"guid":"4980529125","songtype":[],"uin":"0","loginflag":0,"platform":"23","h5to":"speed",
-    // "songmid":["0048ukdm41wbsh","000Wpb4P33yS4C","001PeJps37WoGW","000ie6ID1jEHYg","001AxwcN2CZiZH","004WZ2yI2QlxWx","0024BipY1FIfR4","000tGVpV2EWnXW","0015dnr83U9uYe","002d2PFN4gCBVL","0009E15m3hamQd","003d5e8a2YFv7P","002F9yNf3axTav","000O5gNc1ytE3G","000TzJeb3iTla3"]}},
-    // "comm":{"g_tk":5381,"uin":0,"format":"json","ct":23,"cv":0}}
-
-    // {"req_0":{"module":"vkey.GetVkeyServer","method":"CgiGetVkey","param":
-    // {"guid":"4980529125","songtype":[],"uin":"0","loginflag":0,"platform":"23","h5to":"speed",
-    // "songmid":["0048ukdm41wbsh","000Wpb4P33yS4C","001PeJps37WoGW","000ie6ID1jEHYg","001AxwcN2CZiZH","004WZ2yI2QlxWx","0024BipY1FIfR4","000tGVpV2EWnXW","0015dnr83U9uYe","002d2PFN4gCBVL","0009E15m3hamQd","003d5e8a2YFv7P","002F9yNf3axTav","000O5gNc1ytE3G","000TzJeb3iTla3"]}},
-    // "comm":{"g_tk":5381,"uin":0,"format":"json","ct":23,"cv":0}}
     return axios.fetch({
       url: 'https://u.y.qq.com/cgi-bin/musicu.fcg',
       headers: {
@@ -93,6 +81,26 @@ const ajax = {
       }
     })
   },
+
+  // 获取电台所显示的歌单
+  radio() {
+    const data = {
+      labelid: 199,
+      ...config.default_params
+    }
+    return axios.fetch({
+      url: 'https://shc.y.qq.com/v8/fcg-bin/fcg_v8_radiosonglist.fcg',
+      headers: {
+        ...headers,
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json',
+      },
+      method: POST,
+      data
+    })
+  },
+
+
   // 获取电台
   radioInfo() {
     const data = {"comm":{"g_tk":5381,"uin":0,"format":"json","inCharset":"utf-8","outCharset":"utf-8","notice":0,"platform":"h5","needNewCode":1},"detail":{"module":"music.pf_song_detail_svr","method":"get_song_detail","param":{"song_id":214193203}},"simsongs":{"module":"rcmusic.similarSongRadioServer","method":"get_simsongs","param":{"songid":214193203}},"gedan":{"module":"music.mb_gedan_recommend_svr","method":"get_related_gedan","param":{"sin":0,"last_id":0,"song_type":1,"song_id":214193203}},"video":{"module":"MvService.MvInfoProServer","method":"GetSongRelatedMv","param":{"songid":"214193203","songtype":1,"lastmvid":0,"num":5}}}
@@ -106,6 +114,7 @@ const ajax = {
       method: POST,
       data
     })
-  }
+  },
+
 }
 module.exports = ajax
