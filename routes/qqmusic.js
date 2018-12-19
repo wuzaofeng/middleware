@@ -48,10 +48,10 @@ router.get('/lyric',async (ctx,next)=>{
 })
 
 // 获取电台歌单
-router.get('/radio', async(ctx, next) => {
+router.post('/radio', async(ctx, next) => {
   try {
-    const res = await ajax.radio()
-    console.log(res)
+    const { labelid } = ctx.request.body
+    const res = await ajax.radio(labelid)
     ctx.body = res
   } catch (err) {
     console.log(err)
@@ -62,7 +62,7 @@ router.get('/radio', async(ctx, next) => {
 router.get('/radio_info', async (ctx,next)=>{
   try {
     const res = await ajax.radioInfo()
-    console.log(res)
+    console.log(typeof res)
     ctx.body = res
   } catch (err) {
     console.log(err)

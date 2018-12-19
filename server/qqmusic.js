@@ -1,3 +1,4 @@
+const request = require('request')
 const JSONP = require('node-jsonp')
 const config = require('./config').QQMusic
 const axios = require('./axios')
@@ -15,6 +16,7 @@ const ajax = {
   home() {
     return axios.fetch({ url: config.QQHOME_URL, params: config.default_params })
   },
+
   // 获取歌曲列表
   songInfo(param) {
     const params = {
@@ -37,6 +39,7 @@ const ajax = {
       headers
     })
   },
+
   // 热门歌单列表，音乐地址
   songSrc(songmid) {
     const params = {  _: new Date().getTime() }
@@ -62,6 +65,7 @@ const ajax = {
       data
     })
   },
+
   // 获取歌词
   lyric(param) {
     const params = {
@@ -83,23 +87,17 @@ const ajax = {
   },
 
   // 获取电台所显示的歌单
-  radio() {
-    const data = {
-      labelid: 199,
-      ...config.default_params
+  radio(labelid) {
+    const params = {
+      labelid,
+      ...config.default_params,
+      uin: 702167947
     }
     return axios.fetch({
-      url: 'https://shc.y.qq.com/v8/fcg-bin/fcg_v8_radiosonglist.fcg',
-      headers: {
-        ...headers,
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': 'application/json',
-      },
-      method: POST,
-      data
+      url: 'https://szc.y.qq.com/v8/fcg-bin/fcg_v8_radiosonglist.fcg',
+      params,
     })
   },
-
 
   // 获取电台
   radioInfo() {
@@ -115,6 +113,29 @@ const ajax = {
       data
     })
   },
+}
+// 将一个对象拼接在url的后面
+function createURL(url, param) {
+  var urlLink = '';
+  for(key in param) {
+    var link = '&' + key + "=" + param[key];
+    urlLink += link;
+  }
 
+  urlLink = url + "?" + urlLink.substr(1);
+  return urlLink.replace(' ', '');
+}
+// 解析url 拿到参数对象
+function parseQueryString(url) {
+  var result = {};
+  if (url.indexOf('?') > -1) {
+      var str = url.split('?')[1];  
+      var temp = str.split('&');  
+      for (var i = 0; i < temp.length; i++) {     
+          var temp2 = temp[i].split('=');     
+          result[temp2[0]] = temp2[1];  
+      }  
+  }
+  return result;
 }
 module.exports = ajax
