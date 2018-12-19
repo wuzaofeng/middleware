@@ -1,5 +1,3 @@
-const request = require('request')
-const JSONP = require('node-jsonp')
 const config = require('./config').QQMusic
 const axios = require('./axios')
 const headers = {
@@ -101,7 +99,30 @@ const ajax = {
 
   // 获取排行榜
   ranking() {
+    const params = {
+      ...config.default_params,
+      uin: 702167947
+    }
+    return axios.fetch({
+      url: config.QQRANKING,
+      params,
+    })
+  },
 
+  // 获取排行榜详情
+  rankingInfo(topid) {
+    const params = {
+      ...config.default_params,
+      uin: 702167947,
+      tpl: 3,
+      page: 'detail',
+      type: 'top',
+      topid
+    }
+    return axios.fetch({
+      url: config.QQRANKING_INFO,
+      params,
+    })
   }
 }
 module.exports = ajax

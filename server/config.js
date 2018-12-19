@@ -1,6 +1,7 @@
+const QQ_BASE_C = 'https://c.y.qq.com'
+const QQ_BASE_U = 'https://u.y.qq.com'
 const config = {
   // qqmusic
-
   QQMusic: {
     default_params: {
       g_tk: 5381,
@@ -32,11 +33,13 @@ const config = {
       platform: "23",
       h5to: 'speed'
     },
-    QQHOME_URL: "https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg",
-    QQSONG_INFO: 'https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg',
-    QQSONG_LIST: 'https://u.y.qq.com/cgi-bin/musicu.fcg',
-    QQ_LYRIC: 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric.fcg',
-    QQRADIO: 'https://szc.y.qq.com/v8/fcg-bin/fcg_v8_radiosonglist.fcg'
+    QQHOME_URL: `${QQ_BASE_C}/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg`,
+    QQSONG_INFO: `${QQ_BASE_C}/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg`,
+    QQSONG_LIST: `${QQ_BASE_U}/cgi-bin/musicu.fcg`,
+    QQ_LYRIC: `${QQ_BASE_C}/lyric/fcgi-bin/fcg_query_lyric.fcg`,
+    QQRADIO: 'https://szc.y.qq.com/v8/fcg-bin/fcg_v8_radiosonglist.fcg',
+    QQRANKING: `${QQ_BASE_C}/v8/fcg-bin/fcg_myqq_toplist.fcg`,
+    QQRANKING_INFO: `${QQ_BASE_C}/v8/fcg-bin/fcg_v8_toplist_cp.fcg`
   }
 }
 

@@ -58,4 +58,26 @@ router.post('/radio', async(ctx, next) => {
   }
 })
 
+// 获取电台排行榜
+router.get('/ranking', async(ctx, next) => {
+  try {
+    const res = await ajax.ranking()
+    ctx.body = res
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+// 获取排行榜详情
+router.get('/ranking_info', async(ctx, next) => {
+  try {
+    const {topid} = ctx.query
+    const res = await ajax.rankingInfo(topid)
+    console.log(res)
+    ctx.body = res
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 module.exports = router
