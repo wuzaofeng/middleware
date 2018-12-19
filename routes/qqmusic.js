@@ -58,15 +58,4 @@ router.post('/radio', async(ctx, next) => {
   }
 })
 
-// 获取电台信息
-router.get('/radio_info', async (ctx,next)=>{
-  try {
-    const res = await ajax.radioInfo()
-    console.log(typeof res)
-    ctx.body = res
-  } catch (err) {
-    console.log(err)
-  }
-})
-
 module.exports = router

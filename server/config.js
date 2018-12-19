@@ -34,7 +34,9 @@ const config = {
     },
     QQHOME_URL: "https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg",
     QQSONG_INFO: 'https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg',
-    QQSONG_List: 'https://u.y.qq.com/cgi-bin/musicu.fcg'
+    QQSONG_LIST: 'https://u.y.qq.com/cgi-bin/musicu.fcg',
+    QQ_LYRIC: 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric.fcg',
+    QQRADIO: 'https://szc.y.qq.com/v8/fcg-bin/fcg_v8_radiosonglist.fcg'
   }
 }
 

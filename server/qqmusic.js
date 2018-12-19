@@ -54,7 +54,7 @@ const ajax = {
         comm: config.default_comm
     }
     return axios.fetch({
-      url: 'https://u.y.qq.com/cgi-bin/musicu.fcg',
+      url: config.QQSONG_LIST,
       headers: {
         ...headers2,
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -77,7 +77,7 @@ const ajax = {
       ...param
     }
     return axios.fetch({
-      url: 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric.fcg',
+      url: config.QQ_LYRIC,
       params,
       headers: {
         ...headers,
@@ -94,48 +94,14 @@ const ajax = {
       uin: 702167947
     }
     return axios.fetch({
-      url: 'https://szc.y.qq.com/v8/fcg-bin/fcg_v8_radiosonglist.fcg',
+      url: config.QQRADIO,
       params,
     })
   },
 
-  // 获取电台
-  radioInfo() {
-    const data = {"comm":{"g_tk":5381,"uin":0,"format":"json","inCharset":"utf-8","outCharset":"utf-8","notice":0,"platform":"h5","needNewCode":1},"detail":{"module":"music.pf_song_detail_svr","method":"get_song_detail","param":{"song_id":214193203}},"simsongs":{"module":"rcmusic.similarSongRadioServer","method":"get_simsongs","param":{"songid":214193203}},"gedan":{"module":"music.mb_gedan_recommend_svr","method":"get_related_gedan","param":{"sin":0,"last_id":0,"song_type":1,"song_id":214193203}},"video":{"module":"MvService.MvInfoProServer","method":"GetSongRelatedMv","param":{"songid":"214193203","songtype":1,"lastmvid":0,"num":5}}}
-    return axios.fetch({
-      url: 'https://u.y.qq.com/cgi-bin/musicu.fcg?_=1544079236484',
-      headers: {
-        ...headers2,
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': 'application/json',
-      },
-      method: POST,
-      data
-    })
-  },
-}
-// 将一个对象拼接在url的后面
-function createURL(url, param) {
-  var urlLink = '';
-  for(key in param) {
-    var link = '&' + key + "=" + param[key];
-    urlLink += link;
-  }
+  // 获取排行榜
+  ranking() {
 
-  urlLink = url + "?" + urlLink.substr(1);
-  return urlLink.replace(' ', '');
-}
-// 解析url 拿到参数对象
-function parseQueryString(url) {
-  var result = {};
-  if (url.indexOf('?') > -1) {
-      var str = url.split('?')[1];  
-      var temp = str.split('&');  
-      for (var i = 0; i < temp.length; i++) {     
-          var temp2 = temp[i].split('=');     
-          result[temp2[0]] = temp2[1];  
-      }  
   }
-  return result;
 }
 module.exports = ajax
