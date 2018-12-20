@@ -89,7 +89,6 @@ const ajax = {
     const params = {
       labelid,
       ...config.default_params,
-      uin: 702167947
     }
     return axios.fetch({
       url: config.QQRADIO,
@@ -101,7 +100,6 @@ const ajax = {
   ranking() {
     const params = {
       ...config.default_params,
-      uin: 702167947
     }
     return axios.fetch({
       url: config.QQRANKING,
@@ -121,6 +119,17 @@ const ajax = {
     }
     return axios.fetch({
       url: config.QQRANKING_INFO,
+      params,
+    })
+  },
+
+  // 热门搜索
+  hotKeys() {
+    const params = {
+      ...config.default_params,
+    }
+    return axios.fetch({
+      url: config.QQHOT_KEYS,
       params,
     })
   }

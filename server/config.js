@@ -5,7 +5,7 @@ const config = {
   QQMusic: {
     default_params: {
       g_tk: 5381,
-      uin: 0,
+      uin: 702167947,
       format: 'json',
       inCharset: 'utf-8',
       outCharset: 'utf-8',
@@ -39,7 +39,8 @@ const config = {
     QQ_LYRIC: `${QQ_BASE_C}/lyric/fcgi-bin/fcg_query_lyric.fcg`,
     QQRADIO: 'https://szc.y.qq.com/v8/fcg-bin/fcg_v8_radiosonglist.fcg',
     QQRANKING: `${QQ_BASE_C}/v8/fcg-bin/fcg_myqq_toplist.fcg`,
-    QQRANKING_INFO: `${QQ_BASE_C}/v8/fcg-bin/fcg_v8_toplist_cp.fcg`
+    QQRANKING_INFO: `${QQ_BASE_C}/v8/fcg-bin/fcg_v8_toplist_cp.fcg`,
+    QQHOT_KEYS: `${QQ_BASE_C}/splcloud/fcgi-bin/gethotkey.fcg`
   }
 }
 

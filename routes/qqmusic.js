@@ -79,4 +79,14 @@ router.post('/ranking_info', async(ctx, next) => {
   }
 })
 
+// 热门搜索
+router.get('/hot_keys', async(ctx, next) => {
+  try {
+    const res = await ajax.hotKeys()
+    ctx.body = res
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 module.exports = router
