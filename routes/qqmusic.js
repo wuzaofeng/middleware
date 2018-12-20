@@ -69,11 +69,10 @@ router.get('/ranking', async(ctx, next) => {
 })
 
 // 获取排行榜详情
-router.get('/ranking_info', async(ctx, next) => {
+router.post('/ranking_info', async(ctx, next) => {
   try {
-    const {topid} = ctx.query
+    const { topid } = ctx.request.body
     const res = await ajax.rankingInfo(topid)
-    console.log(res)
     ctx.body = res
   } catch (err) {
     console.log(err)
