@@ -111,7 +111,6 @@ const ajax = {
   rankingInfo(topid) {
     const params = {
       ...config.default_params,
-      uin: 702167947,
       tpl: 3,
       page: 'detail',
       type: 'top',
@@ -131,6 +130,34 @@ const ajax = {
     return axios.fetch({
       url: config.QQHOT_KEYS,
       params,
+    })
+  },
+
+  // 关键词搜索
+  searchKeysWord({w, n, p }) {
+    const params = {
+      ...config.default_params,
+      format: 'json',
+      w,
+      zhidaqu: 1,
+      catZhida: 1,
+      t: 0,
+      flag: 1,
+      ie: 'utf-8',
+      sem: 1,
+      aggr: 0,
+      perpage: 20,
+      n,
+      p,
+      remoteplace: 'txt.mqq.all'
+    }
+    return axios.fetch({
+      url: config.QQSEARCH,
+      params,
+      headers: {
+        ...headers,
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
     })
   }
 }

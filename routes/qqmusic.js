@@ -89,4 +89,14 @@ router.get('/hot_keys', async(ctx, next) => {
   }
 })
 
+router.get('/search_keyword', async(ctx, next) => {
+  try {
+    const { w, n = 20, p = 1} = ctx.query
+    const res = await ajax.searchKeysWord({ w, n, p })
+    ctx.body = res
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 module.exports = router

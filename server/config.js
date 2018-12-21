@@ -40,7 +40,8 @@ const config = {
     QQRADIO: 'https://szc.y.qq.com/v8/fcg-bin/fcg_v8_radiosonglist.fcg',
     QQRANKING: `${QQ_BASE_C}/v8/fcg-bin/fcg_myqq_toplist.fcg`,
     QQRANKING_INFO: `${QQ_BASE_C}/v8/fcg-bin/fcg_v8_toplist_cp.fcg`,
-    QQHOT_KEYS: `${QQ_BASE_C}/splcloud/fcgi-bin/gethotkey.fcg`
+    QQHOT_KEYS: `${QQ_BASE_C}/splcloud/fcgi-bin/gethotkey.fcg`,
+    QQSEARCH: `${QQ_BASE_C}/soso/fcgi-bin/search_for_qq_cp`
   }
 }
 
