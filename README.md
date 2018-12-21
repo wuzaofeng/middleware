@@ -1,6 +1,7 @@
 # 🔥 koa2中间件
 
 > 用的是koa2充当中间件
+> 目前做了[高仿qq音乐] (https://github.com/wuzaofeng/qq-music)
 > 在开发的过程中，可能会没发现到一些特别的问题，有什么建议和问题，欢迎大牛们在[Issues](https://github.com/wuzaofeng/middleware/issues)提出更加好的方案。
 
 ## qq音乐接口功能
