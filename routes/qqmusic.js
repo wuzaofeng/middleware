@@ -89,6 +89,7 @@ router.get('/hot_keys', async(ctx, next) => {
   }
 })
 
+// 关键字搜索
 router.get('/search_keyword', async(ctx, next) => {
   try {
     const { w, n = 20, p = 1} = ctx.query
