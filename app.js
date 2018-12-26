@@ -10,6 +10,7 @@ const cors = require('koa2-cors');
 const index = require('./routes/index')
 const users = require('./routes/users')
 const qqmusic = require('./routes/qqmusic')
+const weather = require('./routes/weather')
 require('babel-core/register')
 
 // error handler
@@ -49,7 +50,8 @@ app.use(async (ctx, next) => {
 // routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
-app.use(qqmusic.routes(), qqmusic.allowedMethods())
+app.use(qqmusic.routes(), qqmusic.allowedMethods()) // qq音乐
+app.use(weather.routes(), weather.allowedMethods()) // 中国天气网
 
 // error-handling
 app.on('error', (err, ctx) => {

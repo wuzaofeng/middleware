@@ -1,5 +1,5 @@
 const router = require('koa-router')()
-const ajax = require('../server/qqmusic')
+const ajax = require('../server/qqmusic/qqmusic')
 const utils = require('../utils')
 router.prefix('/qqmusic')
 

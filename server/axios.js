@@ -19,9 +19,9 @@ axios.interceptors.request.use(config => {
 
 // 响应拦截器即异常处理
 axios.interceptors.response.use(response => {
-  // console.log(response)
   return response.data
 }, err => {
+  console.log(err.response)
   if (err && err.response) {
     switch (err.response.status) {
       case 400:
@@ -70,7 +70,7 @@ axios.interceptors.response.use(response => {
   return Promise.resolve(err.response)
 })
 
-axios.defaults.baseURL = '/api'
+// axios.defaults.baseURL = '/api'
 // 设置默认请求头
 axios.defaults.headers = {
   'X-Requested-With': 'XMLHttpRequest'

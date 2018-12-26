@@ -1,5 +1,6 @@
-const config = require('./config').QQMusic
-const axios = require('./axios')
+const axios = require('../axios')
+const config = require('./config')
+
 const headers = {
   referer: 'https://c.y.qq.com/',  //源域名
   host: 'c.y.qq.com'
