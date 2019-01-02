@@ -25,6 +25,17 @@ router.get('/recently', async(ctx, next) => {
   }
 })
 
+// 城市的天气信息
+router.get('/local-info', async(ctx, next) => {
+  try {
+    const params = ctx.query
+    const res = await ajax.localInfo(params)
+    ctx.body = utils.formatVar(res)
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 // http://doc.tianqiapi.com/603579
 // cityid, city, ip
 router.get('/tianqiapi', async(ctx, next) => {
@@ -36,5 +47,6 @@ router.get('/tianqiapi', async(ctx, next) => {
     console.log(err)
   }
 })
+
 
 module.exports = router

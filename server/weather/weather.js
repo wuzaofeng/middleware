@@ -27,6 +27,19 @@ const weather = {
     })
   },
 
+  // 城市的天气信息
+  localInfo(params) {
+    const { citycode } = params
+    return axios.fetch({
+      url: `${config.LOCAL_INFO}/${citycode}.html`,
+      params,
+      headers: {
+        ...headers,
+        'Content-Type': 'text/html'
+      }
+    })
+  },
+
   // http://doc.tianqiapi.com/603579
   tianQiApi(params) {
     return axios.fetch({
