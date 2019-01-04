@@ -1,8 +1,11 @@
 # 🔥 koa2中间件
 
 > 用的是koa2充当中间件
-> 目前做了[高仿qq音乐] (https://github.com/wuzaofeng/qq-music)
 > 在开发的过程中，可能会没发现到一些特别的问题，有什么建议和问题，欢迎大牛们在[Issues](https://github.com/wuzaofeng/middleware/issues)提出更加好的方案。
+
+## 相关项目
+ 基于vue全家桶 [高仿qq音乐](https://github.com/wuzaofeng/qq-music)
+ 微信小程序 [天气预报](https://github.com/wuzaofeng/weather)
 
 ## qq音乐接口功能
 - [x]  qq音乐接口模块
