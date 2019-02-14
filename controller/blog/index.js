@@ -1,6 +1,7 @@
 const articles = require('./articles')
 const user = require('./user')
 const tags = require('./tags')
+const categories = require('./categories')
 
 const controller = {
   Index: async (ctx, next) => {
@@ -12,6 +13,7 @@ console.log({
   user,
   articles,
   tags,
+  categories,
   ...controller
 })
 
@@ -19,5 +21,6 @@ module.exports = {
   user,
   articles,
   tags,
+  categories,
   ...controller
 }

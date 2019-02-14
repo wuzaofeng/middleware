@@ -10,7 +10,10 @@ const articlesSchema = Schema({
   title: String,
   content: String,
   visitor: Number,
-  tag: Number
+  tag: Number,
+  categories: Number
 })
 
-module.exports = mongoose.model('articles', articlesSchema) 
+const model = mongoose.model('articles', articlesSchema)
+
+module.exports = model

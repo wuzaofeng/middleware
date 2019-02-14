@@ -16,4 +16,8 @@ router.get('/user', controller.user.read)
 router.post('/tags', controller.tags.create)
 router.get('/tags', controller.tags.read)
 
+// 文章分类
+router.post('/categories', controller.categories.create)
+router.get('/categories', controller.categories.read)
+
 module.exports = router

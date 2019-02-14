@@ -17,7 +17,8 @@ const SQL_URL = 'mongodb://localhost:27017/blog'
 
 // mongoose
 mongoose.connect(SQL_URL, {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useCreateIndex: true
 });
 
 // error handler

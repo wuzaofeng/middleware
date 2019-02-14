@@ -1,4 +1,5 @@
 const articlesModel = require('../../schema/blog/articles')
+const categoriesModel = require('../../schema/blog/categories')
 
 const articles = {
   read: async (ctx, next) => {
@@ -13,6 +14,7 @@ const articles = {
       img: 'http://jspang.com/static/upload/20190102/9SpnvSzav06JfPUrVtc1hNu9.jpg',
       title: '20个Flutter实例视频教程  让你轻松上手工作',
       tag: 0,
+      categories: 0,
       visitor: 200,
       content: '<p>到目前位置，作一个页面已经没有什么问题了，接下来需要学习一下页面间的跳转，学会了这一季内容，就可以从一个单页面的应用制作一个项目了。</p>\n' +
         '<p>不过提前跟小伙伴们说一下，其实这章也是有难度的，因为这跟前端的导航或者说超链接有所不同。如果你能有空杯心态，学习来会容易一点。</p>\n' +
@@ -28,8 +30,16 @@ const articles = {
         '</li>\n' +
         '</ul>\n'
     }
-    const data = await articlesModel.create(_default);
-    ctx.body = data
+    const data = await articlesModel.create(_default)
+    const { categories } = data
+    console.log(categories)
+    const res = await categoriesModel.findOne({ type: categories })
+    console.log(res)
+    // count++;
+    // const res = await categoriesModel.update({type}, { count })
+    // if (res) {
+      ctx.body = res
+    // }
   },
 }
 

@@ -1,8 +1,8 @@
-const tagsModel = require('../../schema/blog/tags')
+const categoriesModel = require('../../schema/blog/categories')
 
-const tags = {
+const categories = {
   read: async (ctx, next) => {
-    const data = await tagsModel.find()
+    const data = await categoriesModel.find()
     ctx.body = data
   },
   create: async (ctx, next) => {
@@ -14,9 +14,9 @@ const tags = {
       }
     } else {
       // 查找是否有name字段
-      const res = await tagsModel.findOne({ name })
+      const res = await categoriesModel.findOne({ name })
       if (!res) {
-        const data = await tagsModel.create({
+        const data = await categoriesModel.create({
           name,
           type
         })
@@ -30,4 +30,4 @@ const tags = {
   }
 }
 
-module.exports = tags
+module.exports = categories

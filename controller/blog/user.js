@@ -1,13 +1,40 @@
 const userModel = require('../../schema/blog/user')
+const tagsModel = require('../../schema/blog/tags')
+const articlesModel = require('../../schema/blog/articles')
+const categoriesModel = require('../../schema/blog/categories')
 
 const user = {
   read: async (ctx, next) => {
-    const data = await userModel.find()
-    ctx.body = data
+    const { _id, authorSrc, username, location, email } = await userModel.findOne({ email: '673908452@qq.com' })
+    const tags = await tagsModel.find()
+    const articles = await articlesModel.find()
+    const categories = await categoriesModel.find()
+
+    ctx.body = {
+      _id, authorSrc, username, location, email,
+      count: {
+        tags: tags.length,
+        articles: articles.length
+      },
+      tags: tags.map(i => ({
+        name: i.name,
+        type: i.type
+      })),
+      barIcon: [{
+        type: 'github',
+        link: 'https://github.com/wuzaofeng'
+      },{
+        type: 'github',
+        link: 'https://github.com/wuzaofeng'
+      },{
+        type: 'github',
+        link: 'https://github.com/wuzaofeng'
+      }]
+    }
   },
   create: async (ctx, next) => {
     const req = ctx.request.body
-    console.log(req)
+
     const data = await userModel.create({
       authorSrc: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1401422158,2435265343&fm=26&gp=0.jpg',
       username: 'WEIC`S BLOG',
