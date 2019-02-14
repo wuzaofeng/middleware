@@ -5,13 +5,20 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
-const cors = require('koa2-cors');
-
+const cors = require('koa2-cors')
+const mongoose = require('mongoose')
 const index = require('./routes/index')
-const users = require('./routes/users')
 const qqmusic = require('./routes/qqmusic')
 const weather = require('./routes/weather')
+const blog = require('./routes/blog')
 require('babel-core/register')
+
+const SQL_URL = 'mongodb://localhost:27017/blog'
+
+// mongoose
+mongoose.connect(SQL_URL, {
+  useNewUrlParser: true
+});
 
 // error handler
 onerror(app)
@@ -49,9 +56,9 @@ app.use(async (ctx, next) => {
 
 // routes
 app.use(index.routes(), index.allowedMethods())
-app.use(users.routes(), users.allowedMethods())
 app.use(qqmusic.routes(), qqmusic.allowedMethods()) // qq音乐
 app.use(weather.routes(), weather.allowedMethods()) // 中国天气网
+app.use(blog.routes(), weather.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
