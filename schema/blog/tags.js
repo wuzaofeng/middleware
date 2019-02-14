@@ -10,9 +10,10 @@ const tagsSchema = Schema({
   },
   type: {
     type: Number,
-    require: true,
-    unique: true
+    require: true
   }
 })
 
-module.exports = mongoose.model('tags', tagsSchema) 
+const Model = mongoose.model('tags', tagsSchema)
+
+module.exports = Model

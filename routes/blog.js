@@ -20,4 +20,8 @@ router.get('/tags', controller.tags.read)
 router.post('/categories', controller.categories.create)
 router.get('/categories', controller.categories.read)
 
+// 链接
+router.post('/baricon', controller.barIcon.create)
+router.get('/baricon', controller.barIcon.read)
+
 module.exports = router

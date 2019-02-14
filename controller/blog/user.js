@@ -2,6 +2,7 @@ const userModel = require('../../schema/blog/user')
 const tagsModel = require('../../schema/blog/tags')
 const articlesModel = require('../../schema/blog/articles')
 const categoriesModel = require('../../schema/blog/categories')
+const barIconModel = require('../../schema/blog/barIcon')
 
 const user = {
   read: async (ctx, next) => {
@@ -9,6 +10,7 @@ const user = {
     const tags = await tagsModel.find()
     const articles = await articlesModel.find()
     const categories = await categoriesModel.find()
+    const barIcon = await barIconModel.find()
 
     ctx.body = {
       _id, authorSrc, username, location, email,
@@ -20,16 +22,15 @@ const user = {
         name: i.name,
         type: i.type
       })),
-      barIcon: [{
-        type: 'github',
-        link: 'https://github.com/wuzaofeng'
-      },{
-        type: 'github',
-        link: 'https://github.com/wuzaofeng'
-      },{
-        type: 'github',
-        link: 'https://github.com/wuzaofeng'
-      }]
+      categories: categories.map(i => ({
+        name: i.name,
+        count: i.count
+      })),
+      barIcon: barIcon.map(i => ({
+        link: i.link,
+        icon: i.icon,
+        type: i.type
+      }))
     }
   },
   create: async (ctx, next) => {

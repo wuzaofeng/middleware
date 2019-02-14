@@ -3,8 +3,11 @@ const categoriesModel = require('../../schema/blog/categories')
 
 const articles = {
   read: async (ctx, next) => {
-    const data = await articlesModel.find()
-    ctx.body = data
+    const articles = await articlesModel.find()
+    ctx.body = {
+      list: articles,
+      count: articles.length
+    }
   },
   create: async (ctx, next) => {
     const { body } = ctx.request
@@ -32,14 +35,14 @@ const articles = {
     }
     const data = await articlesModel.create(_default)
     const { categories } = data
-    console.log(categories)
-    const res = await categoriesModel.findOne({ type: categories })
-    console.log(res)
-    // count++;
-    // const res = await categoriesModel.update({type}, { count })
-    // if (res) {
+    const { ok } = await categoriesModel.update({type: categories}, {$inc: { count: 1 }})
+    if(ok) {
       ctx.body = res
-    // }
+    } else {
+      ctx.body = {
+        message: "添加失败"
+      }
+    }
   },
 }
 
