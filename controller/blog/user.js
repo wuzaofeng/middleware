@@ -9,7 +9,7 @@ const user = {
     const { email } = ctx.request.query
     // 通过email来查询单个用户
     if (email) {
-      const { _id, authorSrc, username, location } = await userModel.findOne({ email: '673908452@qq.com' })
+      const { _id, authorSrc, username, location } = await userModel.findOne({ email })
       const tags = await tagsModel.find()
       const articles = await articlesModel.find()
       const categories = await categoriesModel.find()
@@ -50,7 +50,7 @@ const user = {
       authorSrc: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1401422158,2435265343&fm=26&gp=0.jpg',
       username: 'WEIC`S BLOG',
       location: 'shenzhen China',
-      email: '673908452@qq.com',
+      email: '99908452@qq.com',
     });
     ctx.body = data
   },
