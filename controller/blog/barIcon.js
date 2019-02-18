@@ -1,4 +1,5 @@
 const barIconModel = require('../../schema/blog/barIcon')
+const {CODE} = require('../../public/javascripts/blogConfig')
 
 const barIcon = {
   read: async (ctx, next) => {
@@ -10,7 +11,8 @@ const barIcon = {
     // 判断是否有传参数
     if (!link || !type || !icon) {
       ctx.body = {
-        message: '参数错误'
+        message: '参数错误',
+        code: CODE.PARAMS_ERROR
       }
     } else {
       const data = await barIconModel.create({

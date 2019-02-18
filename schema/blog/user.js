@@ -8,8 +8,10 @@ const userSchema = Schema({
   location: String,
   email: {
     type: String,
+    unique: true,
     require: true
-  }
+  },
+  create: { type: Date, default: Date.now },
 })
 
 module.exports = mongoose.model('user', userSchema) 

@@ -11,6 +11,8 @@ router.get('/articles', controller.articles.read)
 // 用户
 router.post('/user', controller.user.create)
 router.get('/user', controller.user.read)
+router.put('/user', controller.user.update)
+router.delete('/user', controller.user.delete)
 
 // 标签
 router.post('/tags', controller.tags.create)

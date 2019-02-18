@@ -1,5 +1,6 @@
 const articlesModel = require('../../schema/blog/articles')
 const categoriesModel = require('../../schema/blog/categories')
+const {CODE} = require('../../public/javascripts/blogConfig')
 
 const articles = {
   read: async (ctx, next) => {
@@ -40,7 +41,8 @@ const articles = {
       ctx.body = res
     } else {
       ctx.body = {
-        message: "添加失败"
+        message: "添加失败",
+        code: code.ERROR
       }
     }
   },

@@ -1,4 +1,5 @@
 const categoriesModel = require('../../schema/blog/categories')
+const {CODE} = require('../../public/javascripts/blogConfig')
 
 const categories = {
   read: async (ctx, next) => {
@@ -10,7 +11,8 @@ const categories = {
     // 判断是否有传参数
     if (!name || !type) {
       ctx.body = {
-        message: '参数错误'
+        message: '参数错误',
+        code: CODE.PARAMS_ERROR
       }
     } else {
       // 查找是否有name字段
@@ -23,7 +25,8 @@ const categories = {
         ctx.body = data
       } else {
         ctx.body = {
-          message: '不能重复填写'
+          message: '不能重复填写',
+          code: CODE.REPEAT_ERROR
         }
       }
     }

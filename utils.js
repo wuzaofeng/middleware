@@ -22,4 +22,5 @@ const func = {
     return _new
   }
 }
+
 module.exports = func
