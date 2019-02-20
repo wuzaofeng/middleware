@@ -1,9 +1,10 @@
+// const path = require('path')
 const Koa = require('koa')
 const app = new Koa()
 const views = require('koa-views')
 const json = require('koa-json')
 const onerror = require('koa-onerror')
-const bodyparser = require('koa-bodyparser')
+const bodyparser = require('koa-body')
 const logger = require('koa-logger')
 const cors = require('koa2-cors')
 const mongoose = require('mongoose')
@@ -11,6 +12,7 @@ const index = require('./routes/index')
 const qqmusic = require('./routes/qqmusic')
 const weather = require('./routes/weather')
 const blog = require('./routes/blog')
+
 require('babel-core/register')
 
 const SQL_URL = 'mongodb://localhost:27017/blog'
@@ -26,7 +28,21 @@ onerror(app)
 
 // middlewares
 app.use(bodyparser({
-  enableTypes:['json', 'form', 'text']
+  enableTypes:['json', 'form', 'text'],
+  multipart: true, // 是否支持 multipart-formdate 的表单
+  strict: false, //如果为true，不解析GET,HEAD,DELETE请求
+  formidable: {
+    // uploadDir: path.join(__dirname, 'public/upload/'), // 设置文件上传目录
+    keepExtensions: true, // 保持文件的后缀
+    maxFieldsSize: 2 * 1024 * 1024, // 文件上传大小，缺省2M
+    // onFileBegin: (name, file) => { // 文件上传前的设置
+    //   const fp = path.join(__dirname, 'public/upload/');
+    //   if (!fs.existsSync(fp)) { // 检查是否有“public/upload/”文件夹
+    //     fs.mkdirSync(fp); // 没有就创建
+    //   }
+    //   console.log(`bodyparse: name:${name}; file:${util.inspect(file)}`);
+    // }
+  }
 }))
 app.use(json())
 app.use(logger())

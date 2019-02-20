@@ -6,5 +6,6 @@ const CODE = {
 }
 
 module.exports = {
-  CODE
+  CODE,
+  BASE: 'http://localhost:2222/'
 }

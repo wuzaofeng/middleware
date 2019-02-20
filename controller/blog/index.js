@@ -3,6 +3,7 @@ const user = require('./user')
 const tags = require('./tags')
 const categories = require('./categories')
 const barIcon = require('./barIcon')
+const common = require('./common')
 
 const controller = {
   Index: async (ctx, next) => {
@@ -16,6 +17,7 @@ console.log({
   tags,
   categories,
   barIcon,
+  common,
   ...controller
 })
 
@@ -25,5 +27,6 @@ module.exports = {
   tags,
   categories,
   barIcon,
+  common,
   ...controller
 }

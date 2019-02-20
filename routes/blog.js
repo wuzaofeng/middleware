@@ -26,4 +26,7 @@ router.get('/categories', controller.categories.read)
 router.post('/baricon', controller.barIcon.create)
 router.get('/baricon', controller.barIcon.read)
 
+// 上传图片
+router.post('/common/avatar', controller.common.avatar)
+
 module.exports = router
