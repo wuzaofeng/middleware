@@ -9,7 +9,7 @@ const categoriesSchema = Schema({
     unique: true
   },
   type: {
-    type: Number,
+    type: [String, Number],
     require: true,
     unique: true
   },
@@ -17,7 +17,15 @@ const categoriesSchema = Schema({
     type: Number,
     require: true,
     default: 0
-  }
+  },
+  create: { type: Date, default: Date.now },
+  update: { type: Date, default: Date.now },
 })
+
+categoriesSchema.pre('save', function (next) {
+  this.update = Date.now();
+  next()
+});
+
 
 module.exports = mongoose.model('categories', categoriesSchema) 

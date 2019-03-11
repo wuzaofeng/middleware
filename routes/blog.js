@@ -21,6 +21,8 @@ router.get('/tags', controller.tags.read)
 // 文章分类
 router.post('/categories', controller.categories.create)
 router.get('/categories', controller.categories.read)
+router.put('/categories', controller.categories.update)
+router.delete('/categories', controller.categories.delete)
 
 // 链接
 router.post('/baricon', controller.barIcon.create)

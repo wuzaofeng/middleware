@@ -71,8 +71,6 @@ const user = {
   },
   delete: async (ctx, next) => {
     const {delData} = ctx.request.body
-    console.log(ctx.request)
-    console.log(ctx.request.body)
     if (delData.length) {
       for(let i=0;i<delData.length;i++) {
         const _id = delData[i]
@@ -89,7 +87,6 @@ const user = {
         code: CODE.PARAMS_ERROR
       }
     }
- 
  },
 }
 

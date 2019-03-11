@@ -14,8 +14,15 @@ const barIconSchema = Schema({
   link: {
     type: String,
     require: true
-  }
+  },
+  create: { type: Date, default: Date.now },
+  update: { type: Date, default: Date.now },
 })
+
+barIconSchema.pre('save', function (next) {
+  this.update = Date.now();
+  next()
+});
 
 const model = mongoose.model('barIcon', barIconSchema)
 

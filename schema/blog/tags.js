@@ -11,8 +11,16 @@ const tagsSchema = Schema({
   type: {
     type: Number,
     require: true
-  }
+  },
+  create: { type: Date, default: Date.now },
+  update: { type: Date, default: Date.now },
 })
+
+tagsSchema.pre('save', function (next) {
+  this.update = Date.now();
+  next()
+});
+
 
 const Model = mongoose.model('tags', tagsSchema)
 
