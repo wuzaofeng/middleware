@@ -2,7 +2,6 @@ const userModel = require('../../schema/blog/user')
 const tagsModel = require('../../schema/blog/tags')
 const articlesModel = require('../../schema/blog/articles')
 const categoriesModel = require('../../schema/blog/categories')
-const barIconModel = require('../../schema/blog/barIcon')
 const {CODE} = require('../../public/javascripts/blogConfig')
 
 const user = {
@@ -14,7 +13,6 @@ const user = {
       const tags = await tagsModel.find()
       const articles = await articlesModel.find()
       const categories = await categoriesModel.find()
-      const barIcon = await barIconModel.find()
   
       ctx.body = {
         _id, authorSrc, username, location, email,
@@ -29,11 +27,6 @@ const user = {
         categories: categories.map(i => ({
           name: i.name,
           count: i.count
-        })),
-        barIcon: barIcon.map(i => ({
-          link: i.link,
-          icon: i.icon,
-          type: i.type
         })),
         code: CODE.SUCCESS
       }
@@ -50,6 +43,7 @@ const user = {
     const req = ctx.request.body
     const data = await userModel.create(req)
     ctx.body = {
+      message: '添加成功',
       code: CODE.SUCCESS
     }
   },
@@ -71,6 +65,7 @@ const user = {
   },
   delete: async (ctx, next) => {
     const {delData} = ctx.request.body
+    console.log(delData)
     if (delData.length) {
       for(let i=0;i<delData.length;i++) {
         const _id = delData[i]

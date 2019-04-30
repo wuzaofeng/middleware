@@ -26,7 +26,10 @@ const categories = {
           name,
           type
         })
-        ctx.body = data
+        ctx.body = {
+          data,
+          code: CODE.SUCCESS
+        }
       } else {
         ctx.body = {
           message: '不能重复填写',
@@ -35,18 +38,10 @@ const categories = {
       }
     }
   },
-  create: async (ctx, next) => {
-    const req = ctx.request.body
-    const data = await categoriesModel.create(req)
-    ctx.body = {
-      code: CODE.SUCCESS
-    }
-  },
   update: async (ctx, next) => {
     const {_id, ...updateData} = ctx.request.body
     if (_id) {
       const data = await categoriesModel.findByIdAndUpdate({ _id }, { ...updateData });
-      console.log(data)
       ctx.body = {
         message: '更新成功',
         code: CODE.SUCCESS
@@ -63,8 +58,7 @@ const categories = {
     if (delData.length) {
       for(let i=0;i<delData.length;i++) {
         const _id = delData[i]
-        console.log(_id)
-        const data =await categoriesModel.findByIdAndRemove(_id);
+        const data = await categoriesModel.findByIdAndRemove(_id);
       }
       ctx.body = {
         message: '删除成功',
