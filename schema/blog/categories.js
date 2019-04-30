@@ -9,7 +9,7 @@ const categoriesSchema = Schema({
     unique: true
   },
   type: {
-    type: [String, Number],
+    type: String,
     require: true,
     unique: true
   },
