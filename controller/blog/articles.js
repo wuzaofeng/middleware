@@ -6,8 +6,11 @@ const articles = {
   read: async (ctx, next) => {
     const articles = await articlesModel.find()
     ctx.body = {
-      list: articles,
-      count: articles.length
+      data: {
+        list: articles,
+        count: articles.length
+      },
+      code: CODE.SUCCESS
     }
   },
   create: async (ctx, next) => {
@@ -38,7 +41,10 @@ const articles = {
     const { categories } = data
     const { ok } = await categoriesModel.update({type: categories}, {$inc: { count: 1 }})
     if(ok) {
-      ctx.body = res
+      ctx.body = {
+        data,
+        code: CODE.SUCCESS
+      }
     } else {
       ctx.body = {
         message: "添加失败",
